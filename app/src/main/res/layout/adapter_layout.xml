@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="country"
+            type="com.app.infyfour.data.model.CountryModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/value_4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_16dp">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingBottom="@dimen/dimen_8dp"
+                android:textSize="@dimen/dimen_20sp"
+                android:text="@{country.title}"
+                android:visibility="@{TextUtils.isEmpty(country.title) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineSpacingExtra="4dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/dimen_8dp"
+                android:paddingRight="@dimen/dimen_8dp"
+                android:paddingLeft="0dp"
+                android:textSize="@dimen/dimen_16sp"
+                android:text='@{country.description != null ? country.description :"No description available!"}'
+                app:layout_constraintEnd_toStartOf="@+id/imgCountry"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
+
+            <ImageView
+                android:id="@+id/imgCountry"
+                android:layout_width="@dimen/dimen_80dp"
+                android:layout_height="@dimen/dimen_60dp"
+                app:layout_constraintEnd_toStartOf="@+id/imgArrow"
+                android:src='@{country.imageHref != null ? country.imageHref : ""}'
+                app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+
+            <ImageView
+                android:id="@+id/imgArrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                android:src="@drawable/ic_arrow"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
